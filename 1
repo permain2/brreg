@@ -1,0 +1,22 @@
+from selenium import webdriver
+from time import sleep
+from selenium.webdriver.common.keys import Keys
+
+find_bedrift = input("Hvilken bedrift har du lust å finne? ")
+
+driver = webdriver.Chrome(executable_path=r'C:\Users\Åkerlun\Desktop\chromedriver.exe')
+driver.get("https://www.brreg.no/")
+driver.maximize_window()
+sleep(2)
+
+find_search = driver.find_element_by_id('inputparam')
+find_search.click()
+find_search.send_keys(find_bedrift)
+find_search.send_keys(Keys.RETURN)
+
+
+elems = driver.find_elements_by_xpath("//a[@href]")
+
+for links in elems:
+   print(links.get_attribute('href'))
+ 
